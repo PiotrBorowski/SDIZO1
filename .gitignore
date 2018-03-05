@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/SDIZO1/v15
+/Debug
+/SDIZO1/Debug/SDIZO1.tlog
+/SDIZO1/Debug
+/SDIZO1/SDIZO1.vcxproj.filters
+/SDIZO1/SDIZO1.vcxproj
+/SDIZO1.sln
