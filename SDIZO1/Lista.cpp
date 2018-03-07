@@ -72,13 +72,34 @@ void Lista::insert(int32_t value, int index)
 
 int32_t Lista::pop_front()
 {
-	return pop(0);
+	if (size == 0)
+		return NULL; //TODO: EXCEPTION
+
+	Element* element = head;
+	int32_t val = element->data;
+
+	if(size == 1)
+	{
+		head = nullptr;
+		tail = nullptr;
+	}
+	else
+	{
+		head = element->next;
+		(element->next)->prev = nullptr;
+		delete element;
+	}
+
+	--size;
+	return val;
+
 }
 
 int32_t Lista::pop_back()
 {	
 	return pop(size - 1);
 }
+
 
 int32_t Lista::pop(int index)
 {
@@ -96,5 +117,6 @@ int32_t Lista::pop(int index)
 		tail = element->prev;
 
 	delete element;
+	--size;
 	return val;
 }

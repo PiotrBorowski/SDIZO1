@@ -21,5 +21,6 @@ public:
 	int32_t pop_front();
 	int32_t pop_back();
 	int32_t pop(int);
+	int32_t pop(Element*);
 };
 
