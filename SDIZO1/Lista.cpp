@@ -72,5 +72,29 @@ void Lista::insert(int32_t value, int index)
 
 int32_t Lista::pop_front()
 {
-	
+	return pop(0);
+}
+
+int32_t Lista::pop_back()
+{	
+	return pop(size - 1);
+}
+
+int32_t Lista::pop(int index)
+{
+	Element* element = find(index);
+	int32_t val = element->data;
+
+	if (element->prev != nullptr)
+		(element->prev)->next = element->next;
+	else
+		head = element->next;
+
+	if (element->next != nullptr)
+		(element->next)->prev = element->prev;
+	else
+		tail = element->prev;
+
+	delete element;
+	return val;
 }
