@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "Lista.h"
+#include "IndexOutOfRangeException.h"
+#include <exception>
 
 
 Element* Lista::find(int index)
 {
 	if (index >= size || index < 0)
-		return nullptr;
+		throw IndexOutOfRangeException(); //TODO EXCEPTION
 
 	Element* element;
 	if(index <= size/2)
@@ -61,7 +63,7 @@ void Lista::insert(int32_t value, int index)
 	Element* temp = find(index);
 
 	if (temp == nullptr)
-		return; //TODO EXCEPTION
+		throw IndexOutOfRangeException(); //TODO EXCEPTION
 
 	Element* newElem = new Element(value, temp->prev, temp);
 	(newElem->prev)->next = newElem;
@@ -96,13 +98,35 @@ int32_t Lista::pop_front()
 }
 
 int32_t Lista::pop_back()
-{	
-	return pop(size - 1);
+{
+	if (size == 0)
+		return NULL; //TODO: EXCEPTION
+
+	Element* element = tail;
+	int32_t val = element->data;
+
+	if(size == 1)
+	{
+		head = nullptr;
+		tail = nullptr;
+	}
+	else
+	{
+		tail = element->prev;
+		(element->prev)->next = nullptr;
+		delete element;
+	}
+
+	--size;
+	return val;
 }
 
 
 int32_t Lista::pop(int index)
 {
+	if (index >= size || index < 0)
+		throw IndexOutOfRangeException(); //TODO EXCEPTION
+
 	Element* element = find(index);
 	int32_t val = element->data;
 
