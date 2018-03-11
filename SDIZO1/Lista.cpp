@@ -58,6 +58,8 @@ void Lista::push_back(int value)
 		head = temp;
 }
 
+
+// wstawia nowy dodatkowy element w dane miejsce i przesuwa element ktory byl na tym miejscu o jedna pozycje dalej
 void Lista::insert(int32_t value, int index)
 {
 	Element* temp = find(index);

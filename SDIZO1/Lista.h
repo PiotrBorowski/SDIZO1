@@ -21,6 +21,6 @@ public:
 	void pop_front();
 	void pop_back();
 	void pop(int);
-	int32_t pop(Element*);
+	void print();
 };
 
