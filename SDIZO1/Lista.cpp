@@ -72,13 +72,12 @@ void Lista::insert(int32_t value, int index)
 	++size;
 }
 
-int32_t Lista::pop_front()
+void Lista::pop_front()
 {
 	if (size == 0)
 		return NULL; //TODO: EXCEPTION
 
 	Element* element = head;
-	int32_t val = element->data;
 
 	if(size == 1)
 	{
@@ -93,17 +92,14 @@ int32_t Lista::pop_front()
 	}
 
 	--size;
-	return val;
-
 }
 
-int32_t Lista::pop_back()
+void Lista::pop_back()
 {
 	if (size == 0)
-		return NULL; //TODO: EXCEPTION
+		return; //TODO: EXCEPTION
 
 	Element* element = tail;
-	int32_t val = element->data;
 
 	if(size == 1)
 	{
@@ -118,17 +114,15 @@ int32_t Lista::pop_back()
 	}
 
 	--size;
-	return val;
 }
 
 
-int32_t Lista::pop(int index)
+void Lista::pop(int index)
 {
 	if (index >= size || index < 0)
 		throw IndexOutOfRangeException(); //TODO EXCEPTION
 
 	Element* element = find(index);
-	int32_t val = element->data;
 
 	if (element->prev != nullptr)
 		(element->prev)->next = element->next;
@@ -142,5 +136,4 @@ int32_t Lista::pop(int index)
 
 	delete element;
 	--size;
-	return val;
 }

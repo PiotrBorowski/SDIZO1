@@ -12,8 +12,8 @@ public:
 	Tablica(int32_t*, int);
 	~Tablica();
 
-	void push_front(int);
-	void push_back(int);
+	void push_front(int32_t);
+	void push_back(int32_t);
 	void insert(int32_t, int);
 	void pop_front();
 	void pop_back();

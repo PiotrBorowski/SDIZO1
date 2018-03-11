@@ -18,9 +18,9 @@ public:
 	void push_front(int);
 	void push_back(int);
 	void insert(int32_t, int);
-	int32_t pop_front();
-	int32_t pop_back();
-	int32_t pop(int);
+	void pop_front();
+	void pop_back();
+	void pop(int);
 	int32_t pop(Element*);
 };
 
