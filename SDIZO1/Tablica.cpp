@@ -90,3 +90,38 @@ void Tablica::pop(int index)
 	memcpy(temp + index, head + index + 1, (--size - index) * sizeof(int32_t)); // kopiowanie i zmienejszanie size o 1
 	head = temp;
 }
+
+int Tablica::find(int32_t value)
+{
+	for (int i = 0; i < size; ++i)
+	{
+		if (*(head + i) == value)
+			return i;
+	}
+	return NULL;
+}
+
+int32_t Tablica::get(int index)
+{
+	if (index < 0 || index >size)
+		throw IndexOutOfRangeException();
+
+	int32_t* elem = head;
+
+	for (int i = 0; i < index ; ++i)
+	{
+		++elem;
+	}
+	return *elem;
+}
+
+void Tablica::print(std::ostream& out)
+{
+	out << "\nElementy tablicy:\n";
+	for (int i = 0; i < size; ++i)
+	{
+		out << *(head + i);
+		out << "\n";
+	}
+	out << "\n";
+}

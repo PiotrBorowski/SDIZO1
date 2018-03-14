@@ -4,7 +4,7 @@
 #include <exception>
 
 
-Element* Lista::find(int index)
+Element* Lista::get_element(int index)
 {
 	if (index >= size || index < 0)
 		throw IndexOutOfRangeException(); //TODO EXCEPTION
@@ -62,7 +62,7 @@ void Lista::push_back(int value)
 // wstawia nowy dodatkowy element w dane miejsce i przesuwa element ktory byl na tym miejscu o jedna pozycje dalej
 void Lista::insert(int32_t value, int index)
 {
-	Element* temp = find(index);
+	Element* temp = get_element(index);
 
 	if (temp == nullptr)
 		throw IndexOutOfRangeException(); //TODO EXCEPTION
@@ -77,7 +77,7 @@ void Lista::insert(int32_t value, int index)
 void Lista::pop_front()
 {
 	if (size == 0)
-		return NULL; //TODO: EXCEPTION
+		return; //TODO: EXCEPTION
 
 	Element* element = head;
 
@@ -124,7 +124,7 @@ void Lista::pop(int index)
 	if (index >= size || index < 0)
 		throw IndexOutOfRangeException(); //TODO EXCEPTION
 
-	Element* element = find(index);
+	Element* element = get_element(index);
 
 	if (element->prev != nullptr)
 		(element->prev)->next = element->next;
@@ -139,3 +139,46 @@ void Lista::pop(int index)
 	delete element;
 	--size;
 }
+
+int Lista::find(int32_t value)
+{
+	Element* elem = head;
+
+	for (int i = 0; i < size; ++i)
+	{
+		if (elem->data == value)
+			return i;
+
+		elem = elem->next;
+	}
+	return NULL;
+}
+
+int32_t Lista::get(int index)
+{
+	if (index >= size || index < 0)
+		throw IndexOutOfRangeException();
+
+	Element* elem = head;
+
+	for (int i = 0; i < index; ++i)
+	{
+		elem = elem->next;
+	}
+	return elem->data;
+}
+
+void Lista::print(std::ostream& out)
+{
+	out << "\nElementy listy:\n";
+	Element* elem = head;
+	for (int i = 0; i < size; ++i)
+	{
+		out << elem->data;
+		elem = elem->next;
+		out << "\n";
+	}
+	out << "\n";
+
+}
+

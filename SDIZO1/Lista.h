@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 #include "Element.h"
+#include <ostream>
 
 class Lista
 {
@@ -9,7 +10,7 @@ private:
 	Element* tail;
 	int size;
 
-	Element* find(int);
+	Element* get_element(int);
 
 public:
 	Lista();
@@ -21,6 +22,9 @@ public:
 	void pop_front();
 	void pop_back();
 	void pop(int);
-	void print();
+	int find(int32_t);
+	int32_t get(int);
+	void print(std::ostream&);
+	
 };
 
