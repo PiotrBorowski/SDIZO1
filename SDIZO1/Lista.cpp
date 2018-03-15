@@ -34,6 +34,7 @@ Lista::Lista()
 
 Lista::~Lista()
 {
+	while (head) pop_front();
 }
 
 void Lista::push_front(int value)

@@ -4,9 +4,12 @@
 
 Kopiec::Kopiec()
 {
+	table = new Tablica();
+	size = 0;
 }
 
 
 Kopiec::~Kopiec()
 {
+	delete table;
 }

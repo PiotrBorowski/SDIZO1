@@ -15,13 +15,14 @@ Tablica::Tablica(int32_t* head, int32_t size)
 
 Tablica::~Tablica()
 {
+	delete[] head;
 }
 
 void Tablica::push_front(int32_t value)
 {
 	if(size == 0)
 	{
-		head = new int32_t[0];
+		head = new int32_t[1];
 		*head = value;
 		++size;
 	}
@@ -39,7 +40,7 @@ void Tablica::push_back(int32_t value)
 {
 	if(size == 0)
 	{
-		head = new int32_t[0];
+		head = new int32_t[1];
 		*head = value;
 		++size;
 	}
