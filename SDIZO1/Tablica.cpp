@@ -57,7 +57,7 @@ void Tablica::push_back(int32_t value)
 // wstawia nowy dodatkowy element w dane miejsce i przesuwa element ktory byl na tym miejscu o jedna pozycje dalej
 void Tablica::insert(int32_t value, int index)
 {
-	if (index < 0 || index > size)
+	if (index < 0 || index >= size)
 		throw IndexOutOfRangeException();
 
 	int32_t* temp = new int32_t[size + 1];
@@ -83,7 +83,7 @@ void Tablica::pop(int index)
 {
 	if (size == 0)
 		return;
-	if (index < 0 || index >size)
+	if (index < 0 || index >= size)
 		throw IndexOutOfRangeException();
 
 	int32_t* temp = new int32_t[size - 1];
@@ -104,7 +104,7 @@ int Tablica::find(int32_t value)
 
 int32_t Tablica::get(int index)
 {
-	if (index < 0 || index >size)
+	if (index < 0 || index >=size)
 		throw IndexOutOfRangeException();
 
 	int32_t* elem = head;

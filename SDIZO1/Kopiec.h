@@ -14,7 +14,7 @@ public:
 
 	void push(int32_t);
 	void pop();
-	bool contains(int32_t);
+	bool contains(int32_t,int = 0);
 	void print(std::ostream&);
 
 };
