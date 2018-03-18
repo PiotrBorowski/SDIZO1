@@ -25,8 +25,8 @@ void Kopiec::push(int32_t value)
 	while(index > 0 && table->get(parent) < value)
 	{
 		int32_t temp = table->get(index);
-		table->insert(table->get(parent), index);
-		table->insert(temp, parent);
+		table->swap(table->get(parent), index);
+		table->swap(temp, parent);
 		index = parent;
 		parent = (index - 1) / 2;
 	}
@@ -48,8 +48,8 @@ void Kopiec::pop()
 		
 		//jezeli ktorys z synow jest wiekszy lub rowny value to zamieniamy miejscami wiekszego syna z rodzicem
 		int32_t temp = table->get(index);
-		table->insert(table->get(child), index);
-		table->insert(temp, child);
+		table->swap(table->get(child), index);
+		table->swap(temp, child);
 		index = child;
 		child = 2 * child + 1; //nastepny lewy syn
 	}
@@ -66,15 +66,53 @@ bool Kopiec::contains(int32_t value, int index)
 	int leftChild = 2 * index + 1;
 	int rightChild = leftChild+1;
 
-	if (table->get(leftChild) >= value) 
-		if(contains(value, leftChild) == true)
-			return true;
-	
-	if (table->get(rightChild) >= value)
-		if (contains(value, rightChild) == true)
-			return true;
+	if(leftChild < size)
+		if (table->get(leftChild) >= value)
+			if (contains(value, leftChild))
+				return true;
+
+	if(rightChild < size)
+		if (table->get(rightChild) >= value)
+			if (contains(value, rightChild))
+				return true;
+
+
 
 	return false;
 
+}
 
+void Kopiec::print(std::ostream& out)
+{
+	out << "\n";
+	table->print(out);
+	out << "\nKopiec:\n";
+	if (size == 0) return;
+
+	out << table->get(0) << "\n";
+	
+	int i = 2;
+	int j;
+
+	while(i < size)
+	{
+		j = i - 1;
+		i *= 2;
+
+		while( j < i - 1)
+		{
+			try
+			{
+				out << table->get(j) << "\t";
+				++j;
+			}
+			catch (IndexOutOfRangeException)
+			{
+				return;
+			}
+				
+		}
+		out << "\n";
+
+	}
 }

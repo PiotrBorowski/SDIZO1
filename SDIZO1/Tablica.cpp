@@ -92,6 +92,20 @@ void Tablica::pop(int index)
 	head = temp;
 }
 
+void Tablica::swap(int32_t value, int index)
+{
+	if (index < 0 || index >= size)
+		throw IndexOutOfRangeException();
+
+	int32_t* elem = head;
+
+	for (int i = 0; i < index; ++i)
+	{
+		++elem;
+	}
+	*elem = value;
+}
+
 int Tablica::find(int32_t value)
 {
 	for (int i = 0; i < size; ++i)
