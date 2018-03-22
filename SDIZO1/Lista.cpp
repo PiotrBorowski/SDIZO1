@@ -39,6 +39,7 @@ Lista::~Lista()
 
 void Lista::push_front(int value)
 {
+	//nowy element ma wskaznik prev na nullptr a next na terazniejszy head, czyli 1 szy element
 	Element* temp = new Element(value, nullptr, head);
 	head = temp;
 	++size;
@@ -48,8 +49,10 @@ void Lista::push_front(int value)
 		tail = temp;
 }
 
+
 void Lista::push_back(int value)
 {
+	//nowy element ma wskanik prev jako tail, czyli ostatni element, a next jako nullptr
 	Element* temp = new Element(value, tail, nullptr);
 	tail = temp;
 	++size;
@@ -80,6 +83,7 @@ void Lista::insert(int32_t value, int index)
 	if (temp == nullptr)
 		throw IndexOutOfRangeException(); //TODO EXCEPTION
 
+	//wstawia nowy element za elementem temp
 	Element* newElem = new Element(value, temp->prev, temp);
 	(newElem->prev)->next = newElem;
 	temp->prev = newElem;
@@ -90,7 +94,7 @@ void Lista::insert(int32_t value, int index)
 void Lista::pop_front()
 {
 	if (size == 0)
-		return; //TODO: EXCEPTION
+		return;
 
 	Element* element = head;
 
@@ -139,11 +143,13 @@ void Lista::pop(int index)
 
 	Element* element = get_element(index);
 
+	//przypadek jak w pop_front
 	if (element->prev != nullptr)
 		(element->prev)->next = element->next;
 	else
 		head = element->next;
 
+	//przypadek jak przy pop_back
 	if (element->next != nullptr)
 		(element->next)->prev = element->prev;
 	else
@@ -153,6 +159,7 @@ void Lista::pop(int index)
 	--size;
 }
 
+//zwraca indeks pierwszego napotkanego elementu o wartosci == value
 int Lista::find(int32_t value)
 {
 	Element* elem = head;

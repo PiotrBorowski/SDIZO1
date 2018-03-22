@@ -30,7 +30,7 @@ void Tablica::push_front(int32_t value)
 	{
 		int32_t* temp = new int32_t[size + 1];
 		*temp = value;
-		memcpy(++temp, head, size * sizeof(int32_t));
+		memcpy(temp+1, head, size * sizeof(int32_t));
 		head = temp;
 		++size;
 	}
@@ -82,7 +82,7 @@ void Tablica::insert(int32_t value, int index)
 
 void Tablica::pop_front()
 {
-	pop(0); //sprawdzic ilosc instrukcji
+	pop(0); //
 }
 
 void Tablica::pop_back()

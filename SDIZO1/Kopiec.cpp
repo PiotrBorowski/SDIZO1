@@ -56,6 +56,7 @@ void Kopiec::pop()
 	}
 }
 
+//funkcja rekurencyjna sprawdza czy istnieje element o podanej wartosci, podajemy index elementu od ktorego zaczynamy poszukiwanie w dol
 bool Kopiec::contains(int32_t value, int index)
 {
 	if (index < 0 || index >= size)
