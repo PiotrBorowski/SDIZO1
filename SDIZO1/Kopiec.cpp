@@ -85,20 +85,34 @@ bool Kopiec::contains(int32_t value, int index)
 
 void Kopiec::print(std::ostream& out)
 {
-	out << "\n";
-	table->print(out);
+
+	int i = 2;
+	int j;
+	int l = 1;
+
 	out << "\nKopiec:\n";
 	if (size == 0) return;
 
+
+
+	for (int k = 0; k < 8; ++k)
+	{
+		out << "\t";
+	}
 	out << table->get(0) << "\n";
 	
-	int i = 2;
-	int j;
 
 	while(i < size)
 	{
 		j = i - 1;
 		i *= 2;
+	
+
+		for (int k = 0; k < 8 - l; ++k)
+		{
+			out << "\t";
+		}
+		l *= 2;
 
 		while( j < i - 1)
 		{
