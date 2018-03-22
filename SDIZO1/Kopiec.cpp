@@ -46,6 +46,7 @@ void Kopiec::pop()
 			++child;
 		if(value > table->get(child)) break;
 		
+		//naprawianie w dol
 		//jezeli ktorys z synow jest wiekszy lub rowny value to zamieniamy miejscami wiekszego syna z rodzicem
 		int32_t temp = table->get(index);
 		table->swap(table->get(child), index);
