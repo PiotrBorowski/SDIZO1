@@ -30,7 +30,12 @@ void Tablica::push_front(int32_t value)
 	{
 		int32_t* temp = new int32_t[size + 1];
 		*temp = value;
-		memcpy(temp+1, head, size * sizeof(int32_t));
+		for (int i = 0; i < size; ++i)
+		{
+			temp[i+1] = head[i];
+		}
+		//memcpy(temp+1, head, size * sizeof(int32_t));
+		delete[] head;
 		head = temp;
 		++size;
 	}
@@ -47,8 +52,13 @@ void Tablica::push_back(int32_t value)
 	else
 	{
 		int32_t* temp = new int32_t[size + 1];
-		*(temp + size) = value;
-		memcpy(temp, head, size * sizeof(int32_t));
+		temp[size] = value;
+		for (int i = 0; i < size; ++i)
+		{
+			temp[i] = head[i];
+		}
+		//memcpy(temp, head, size * sizeof(int32_t));
+		delete[] head;
 		head = temp;
 		++size;
 	}
@@ -73,9 +83,20 @@ void Tablica::insert(int32_t value, int index)
 		throw IndexOutOfRangeException();
 
 	int32_t* temp = new int32_t[size + 1];
-	memcpy(temp, head, index * sizeof(int32_t));
-	*(temp + index) = value;
-	memcpy(temp + index + 1, head + index, (size - index) * sizeof(int32_t));
+	//memcpy(temp, head, index * sizeof(int32_t));
+	//kopiowanie 1-szej czesci
+	for (int i = 0; i < index; ++i)
+	{
+		temp[i] = head[i];
+	}
+	temp[index] = value;
+	//memcpy(temp + index + 1, head + index, (size - index) * sizeof(int32_t));
+	// kopiowanie 2-giej czesci i zmienejszanie size o 1
+	for (int i = index; i < size; ++i)
+	{
+		temp[i+1] = head[i];
+	}
+	delete[] head;
 	head = temp;
 	++size;
 }
@@ -99,8 +120,19 @@ void Tablica::pop(int index)
 		throw IndexOutOfRangeException();
 
 	int32_t* temp = new int32_t[size - 1];
+	//kopiowanie 1-szej czesci
+//	for (int i = 0; i < index; ++i)
+//	{
+//		temp[i] = head[i];
+//	}
+	// kopiowanie 2-giej czesci i zmienejszanie size o 1
+//	for (int i = index; i < --size; ++i)
+//	{
+//		temp[i] = head[i + 1];
+//	}
 	memcpy(temp, head, index * sizeof(int32_t));
-	memcpy(temp + index, head + index + 1, (--size - index) * sizeof(int32_t)); // kopiowanie i zmienejszanie size o 1
+	memcpy(temp + index, head + index + 1, (--size - index) * sizeof(int32_t)); 
+	delete[] head;
 	head = temp;
 }
 
