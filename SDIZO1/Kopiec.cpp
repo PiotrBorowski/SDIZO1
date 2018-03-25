@@ -36,14 +36,18 @@ void Kopiec::pop()
 {
 	if (size == 0) return;
 	--size;
-	int32_t value = table->get(size); //ostatni element starej tablicy
+	int32_t value = table->get(size);//ostatni element starej tablicy
+	table->swap(value, 0);
+	table->pop_back();
 	int index = 0;
 	int child = 1; // lewy syn
 
 	while(child < size)
 	{
+		// wybieranie wiekszego syna
 		if (child + 1 < size && table->get(child + 1) > table->get(child))
 			++child;
+
 		if(value > table->get(child)) break;
 		
 		//naprawianie w dol
@@ -103,7 +107,7 @@ void Kopiec::print(std::ostream& out)
 	out << table->get(0) << "\n";
 	
 
-	while(i < size)
+	while(i <= size)
 	{
 		j = i - 1;
 		i *= 2;
