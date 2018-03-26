@@ -4,6 +4,7 @@
 
 Tablica::Tablica()
 {
+	size = 0;
 }
 
 Tablica::Tablica(int32_t* head, int32_t size)
@@ -28,7 +29,7 @@ void Tablica::push_front(int32_t value)
 	}
 	else
 	{
-		int32_t* temp = new int32_t[size + 1];
+		int32_t* temp = new int32_t[size + 1]; // nowa tablica o jeden wieksza
 		*temp = value;
 		for (int i = 0; i < size; ++i)
 		{
@@ -136,7 +137,7 @@ void Tablica::pop(int index)
 	head = temp;
 }
 
-void Tablica::swap(int32_t value, int index)
+void Tablica::swap(int32_t value, int index) // zamaiana aktualnej wartosci elementu o podanym indeksie na podana w parametrze
 {
 	if (index < 0 || index >= size)
 		throw IndexOutOfRangeException();

@@ -36,9 +36,9 @@ void Kopiec::pop()
 {
 	if (size == 0) return;
 	--size;
-	int32_t value = table->get(size);//ostatni element starej tablicy
-	table->swap(value, 0);
-	table->pop_back();
+	int32_t value = table->get(size);//ostatni element
+	table->swap(value, 0); //korzen ma teraz wartosc ostatniego elementu
+	table->pop_back(); //usuwany ostatni element
 	int index = 0;
 	int child = 1; // lewy syn
 
@@ -74,11 +74,13 @@ bool Kopiec::contains(int32_t value, int index)
 
 	if (leftChild < size)
 		if (table->get(leftChild) >= value)
-			return contains(value, leftChild);
+			if (contains(value, leftChild))
+				return true;
 
 	if (rightChild < size)
 		if (table->get(rightChild) >= value)
-			return contains(value, rightChild);
+			if (contains(value, rightChild))
+				return true;
 
 
 
