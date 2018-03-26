@@ -140,14 +140,8 @@ void Tablica::swap(int32_t value, int index)
 {
 	if (index < 0 || index >= size)
 		throw IndexOutOfRangeException();
-
-	int32_t* elem = head;
-
-	for (int i = 0; i < index; ++i)
-	{
-		++elem;
-	}
-	*elem = value;
+	
+	*(head + index)= value;
 }
 
 int Tablica::find(int32_t value)
@@ -165,13 +159,7 @@ int32_t Tablica::get(int index)
 	if (index < 0 || index >=size)
 		throw IndexOutOfRangeException();
 
-	int32_t* elem = head;
-
-	for (int i = 0; i < index ; ++i)
-	{
-		++elem;
-	}
-	return *elem;
+	return *(head+index);
 }
 
 void Tablica::print(std::ostream& out)
