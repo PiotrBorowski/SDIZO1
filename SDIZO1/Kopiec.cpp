@@ -72,15 +72,13 @@ bool Kopiec::contains(int32_t value, int index)
 	int leftChild = 2 * index + 1;
 	int rightChild = leftChild+1;
 
-	if(leftChild < size)
+	if (leftChild < size)
 		if (table->get(leftChild) >= value)
-			if (contains(value, leftChild))
-				return true;
+			return contains(value, leftChild);
 
-	if(rightChild < size)
+	if (rightChild < size)
 		if (table->get(rightChild) >= value)
-			if (contains(value, rightChild))
-				return true;
+			return contains(value, rightChild);
 
 
 
